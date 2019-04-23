@@ -16,3 +16,10 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::post('/login', 'UserController@login');
+Route::post('/user', 'UserController@register');
+Route::patch('/user', 'UserController@patch')->middleware('check.token');
+Route::post('/headpic', 'UserController@upload_head_pic')->middleware('check.token');
+Route::post('/sayings', 'SayingsController@create')->middleware('check.token');
+Route::get('/sayings', 'SayingsController@show_all');

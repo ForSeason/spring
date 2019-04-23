@@ -4,16 +4,16 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class User extends Model
+class Sayings extends Model
 {
-    protected $table = 'user';
+    protected $table = 'sayings';
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'account', 'nickname', 'sex', 'password', 'url_head_pic', 'age', 'phone',
+        'uid', 'nickname', 'url_head_pic', 'content',
     ];
 
     /**
@@ -22,7 +22,6 @@ class User extends Model
      * @var array
      */
     protected $hidden = [
-        'password',
         // 'remember_token',
     ];
 
@@ -35,4 +34,5 @@ class User extends Model
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
     ];
+    //
 }
