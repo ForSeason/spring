@@ -28,3 +28,4 @@ Route::delete('/room', 'RoomController@delete')->middleware('check.token');
 Route::get('/chat', 'ChatController@getChats')->middleware('check.token');
 Route::post('/chat/room_id/{room_id}', 'ChatController@postText')->middleware('check.token');
 Route::post('/chat/room_id/{room_id}/type/{type}', 'ChatController@postMedia')->middleware('check.token');
+Route::get('/test/path', 'TestController@path');
