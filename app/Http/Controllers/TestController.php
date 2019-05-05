@@ -8,6 +8,9 @@ use Symfony\Component\HttpFoundation\Response;
 class TestController extends Controller
 {
     public function path(Request $request) {
-        response($request->path());
+        return response(array(
+            'status' => 'ok',
+            'path' => $request->path()
+        ));
     }
 }
