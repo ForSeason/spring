@@ -10,7 +10,8 @@ class TestController extends Controller
     public function path(Request $request) {
         return response(array(
             'status' => 'ok',
-            'path' => $request->path()
+            'path' => $request->path(),
+            'url' => action('RoomController@create')
         ));
     }
 }
