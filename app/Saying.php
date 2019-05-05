@@ -4,16 +4,16 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class User extends Model
+class Saying extends Model
 {
-    protected $table = 'user';
+    protected $table = 'saying';
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'account', 'nickname', 'sex', 'password', 'url_head_pic', 'age', 'phone',
+        'user_id', 'nickname', 'url_head_pic', 'content',
     ];
 
     /**
@@ -22,7 +22,6 @@ class User extends Model
      * @var array
      */
     protected $hidden = [
-        'password',
         // 'remember_token',
     ];
 
@@ -35,21 +34,5 @@ class User extends Model
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
     ];
-
-    public function members() {
-        return $this->hasMany('App\Member');
-    }
-
-    public function sayings() {
-        return $this->hasMany('App\Saying');
-    }
-
-    protected static function boot() {
-        parent::boot();
-
-        static::deleting(function($user) {
-            $user->members()->delete();
-            $user->sayings()->delete();
-        });
-    }
+    //
 }

@@ -13,7 +13,10 @@ class UserController extends Controller
     public function login(Request $request) {
         $params = array('account', 'password');
         if ($request->has($params)) {
-            $user = User::where('account', $request->account)->firstOrFail();
+            $user = User::where('account', $request->account)
+                // ->with('members:user_id,room_id')
+                ->with('members')
+                ->firstOrFail();
             $user->token = password_hash(time(), PASSWORD_DEFAULT);
             $user->update();
             if ($user && password_verify($request->password, $user->password)) return response($user, 200);
@@ -60,7 +63,7 @@ class UserController extends Controller
             $ext  = $fileHandler->getClientOriginalExtension();
             if (in_array($ext, array('jpg', 'jpeg', 'png'))) {
                 $path = $fileHandler->getRealPath();
-                $filename = '/storage/app/public/'.date('Y-m-d-h-i-s').'.'.$ext;
+                $filename = '/storage/app/public/head_pic/'.md5(time()).'.'.$ext;
                 Storage::disk('public')->put($filename, file_get_contents($path));
                 return response(array('url_head_pic' => $filename));
             }

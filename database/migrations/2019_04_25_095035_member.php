@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Sayings extends Migration
+class Member extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,10 @@ class Sayings extends Migration
      */
     public function up()
     {
-        Schema::create('saying', function (Blueprint $table) {
+        Schema::create('member', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id')->unsigned()->comment('creator');
-            $table->string('nickname');
-            $table->string('content');
-            $table->string('url_head_pic')->nullable();
+            $table->integer('user_id')->unsigned();
+            $table->integer('room_id')->unsigned();
             $table->timestamps();
         });
         //
@@ -31,7 +29,7 @@ class Sayings extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('saying');
+        Schema::dropIfExists('member');
         //
     }
 }
